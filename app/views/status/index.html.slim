@@ -3,6 +3,7 @@ table
 		th Номер ресторана
 		th Адрес
 		th IP-адрес
+		th Соединение
 		th Статус
 	tbody
 		- @servers.each do |server|
@@ -10,4 +11,5 @@ table
 				td= server.restaurant
 				td= server.address
 				td= server.ip
+				td= server.link
 				td= server.status

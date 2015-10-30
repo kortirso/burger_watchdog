@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030082608) do
+ActiveRecord::Schema.define(version: 20151030141632) do
 
   create_table "gameservers", force: :cascade do |t|
     t.integer  "restaurant"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20151030082608) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.boolean  "status",     default: true
+    t.boolean  "link",       default: true
   end
 
 end
