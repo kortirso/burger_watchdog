@@ -1,0 +1,13 @@
+table
+	thead
+		th Номер ресторана
+		th Адрес
+		th IP-адрес
+		th Статус
+	tbody
+		- @servers.each do |server|
+			tr
+				td= server.restaurant
+				td= server.address
+				td= server.ip
+				td= server.status
