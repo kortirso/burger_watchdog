@@ -13,10 +13,10 @@ table#watchdog
 		- @opened.each do |server|
 			- if server.status == false
 				tr style="background: red;"
-					= render partial: 'status/tr', locals: {server: server}
+					= render 'status/tr', server: server
 			- elsif server.desk_check == false
 				tr style="background: yellow;"
-					= render partial: 'status/tr', locals: {server: server}
+					= render 'status/tr', server: server
 			- else
 				tr
-					= render partial: 'status/tr', locals: {server: server}
+					= render 'status/tr', server: server
