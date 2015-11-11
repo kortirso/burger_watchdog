@@ -11,16 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030141632) do
+ActiveRecord::Schema.define(version: 20151111131414) do
 
   create_table "gameservers", force: :cascade do |t|
-    t.integer  "restaurant"
     t.string   "ip"
     t.string   "address"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.boolean  "status",     default: true
-    t.boolean  "link",       default: true
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "status",         default: true
+    t.string   "open",           default: "false"
+    t.boolean  "desk_check",     default: true
+    t.integer  "uptime",         default: 0
+    t.integer  "uptime_periods", default: 0
   end
 
 end

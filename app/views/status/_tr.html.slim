@@ -1,0 +1,8 @@
+td= server.address
+td= server.ip
+td= server.status
+td= server.desk_check
+- if server.uptime_periods > 0
+	td= "#{server.uptime * 100 / server.uptime_periods}%"
+- else
+	td= "0%"

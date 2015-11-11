@@ -1,15 +1,22 @@
-table
+p= "Всего ресторанов - #{@servers.count}"
+p= "Запущено ресторанов - #{@opened.count}"
+p= "Идет игр - #{@work.count}"
+
+table#watchdog
 	thead
-		th Номер ресторана
 		th Адрес
 		th IP-адрес
-		th Соединение
-		th Статус
+		th Статус сервера
+		th Статус касс
+		th Uptime
 	tbody
-		- @servers.each do |server|
-			tr
-				td= server.restaurant
-				td= server.address
-				td= server.ip
-				td= server.link
-				td= server.status
+		- @opened.each do |server|
+			- if server.status == false
+				tr style="background: red;"
+					= render partial: 'status/tr', locals: {server: server}
+			- elsif server.desk_check == false
+				tr style="background: yellow;"
+					= render partial: 'status/tr', locals: {server: server}
+			- else
+				tr
+					= render partial: 'status/tr', locals: {server: server}

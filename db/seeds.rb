@@ -2,4 +2,7 @@ Gameserver.all.each do |server|
 	server.destroy
 end
 
-Gameserver.create(restaurant: 1, ip: '10.0.6.2', address: 'МСК, пл. Киевского вокзала, 2, ТЦ Европейский, 4 этаж')
+# Загрузка из файла
+CSV.read("#{Rails.root}/db/gameservers.csv", encoding: 'utf-8', col_sep: ';')[0..-1].each do |row|
+	Gameserver.create(address: row[0].to_s, ip: row[1].to_s, open: row[2].to_s)
+end

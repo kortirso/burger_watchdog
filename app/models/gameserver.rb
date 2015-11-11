@@ -1,45 +1,71 @@
-require 'timeout'
-require 'socket'
+require 'open-uri'
 
 class Gameserver < ActiveRecord::Base
-	validates :restaurant, :ip, :address, presence: true
+	#validates :ip, :address, :open, :status, :desk_check, :uptime, :uptime_periods, presence: true
+
+	scope :opened,		-> { where open: 'true' }
+	scope :working,	-> { where status: true, desk_check: true }
 
 	def self.check_statuses
-		servers = Gameserver.all
+		servers = Gameserver.opened
 		servers.each do |server|
-			if server.ping
-				begin
-					server.link = true
-					response = HTTParty.get("http://#{server.ip}/?format=json")
-					if response.nil?
-						server.status = false
-					else
-						server.status = response.parsed_response['attempts'] ? true : false
-					end
-				rescue Errno::ECONNREFUSED
-					server.status = false
-					server.save!
+			begin
+				source = "http://#{server.ip}/?format=json"
+				response = open(source)
+				data = JSON.parse(response.read)
+				server.desk_check = false
+				data["desks"].each do |desk|
+					server.desk_check = true if desk["statistic"]["desk_points"] > 0
 				end
-			else
-				server.link = false
-				server.status = false
-			end
-			server.save!
-		end
-	end
+				server.status = true
 
-	def ping
-		host = self.ip
-		begin
-			Timeout.timeout(1) do
-				s = TCPSocket.new(host, 'echo')
-				s.close
-				return true
+				if server.uptime_periods == 288 # Если данные собираются 3 дня
+					server.uptime_periods = 0
+					server.uptime = 0
+				end
+
+				server.uptime += 1 if server.desk_check
+				server.uptime_periods += 1
+
+				server.save!
+			rescue Exception
+				server.status = false
+				server.desk_check = false
+				server.uptime_periods += 1
+				server.save!
+			rescue Errno::ECONNREFUSED
+				server.status = false
+				server.desk_check = false
+				server.uptime_periods += 1
+				server.save!
+			rescue EOFError
+				false
+			rescue OpenURI::HTTPError
+				server.status = false
+				server.desk_check = false
+				server.uptime_periods += 1
+				server.save!
+			rescue Errno::EHOSTUNREACH
+				server.status = false
+				server.desk_check = false
+				server.uptime_periods += 1
+				server.save!
+			rescue Errno::ENETUNREACH
+				server.status = false
+				server.desk_check = false
+				server.uptime_periods += 1
+				server.save!
+			rescue JSON::ParserError
+				server.status = false
+				server.desk_check = false
+				server.uptime_periods += 1
+				server.save!
+			rescue NET::ERR_CONNECTION_TIMED_OUT
+				server.status = false
+				server.desk_check = false
+				server.uptime_periods += 1
+				server.save!
 			end
-		rescue Errno::ECONNREFUSED
-			return true
-		rescue Timeout::Error, Errno::ENETUNREACH, Errno::EHOSTUNREACH
-			return false
 		end
 	end
 end
