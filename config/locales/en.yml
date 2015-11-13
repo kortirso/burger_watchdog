@@ -1,23 +1,29 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  attributes:
+    config:
+      monster_timeout: Таймаут расчета здоровья монстра, минут
+      monster_percent: Процент расчета здоровья монстра
+      monster_heal: Лечение монстра при включении ускоренного режима
+      green_mark_points: Очки за галочку метку
+      yellow_mark_points: Очки за звёздочку метку
+      red_mark_points: Очки за крестик метку
+      default_mark_points: Очки по умолчанию
+      streak_bonus: Бонус за страйк при наполнении заказа
+      corporate: 'Корпоративный стандарт времени обслуживания (секунды)'
+      corporate_periods: Промежутки времени, за которые начисляются бонусы/штрафы, секунд
+      corporate_koef: Штраф/бонус за отставание/опережение корпоративного стандарта
+      corporate_minimum: 'Минимальное время обслуживания (секунды)'
+      corporate_maximum: 'Максимальное время обслуживания (секунды)'
+      speed_koef: Коффициент за турборежим
+      speed_times: 'Продолжительность ускоренного режима (минуты)'
+      speed_count: 'Кол-во включений ускоренного режима'
+      triangle_koef: Коффициент за режим приоритет треугольники
+      triangle_periods: Временные периоды работы режима приоритет треугольники
+      manager_koef: Коффициент менеджера
+      level_percent: 'Шаг/планка для желтых статусов'
+      level_point: Цель для желтых статусов
+      disposals: 'списания в рублях для -100 шкалы менеджера'
+      dessert_bonus: 'Бонус за суперполный треугольник с десертом'
+      blinking: 'мигание индикатора ускорения на кассах'
+      max_green_time: 'Максимальное время действия зеленых/красных статусов'
+      version: Версия обновления (UTC)

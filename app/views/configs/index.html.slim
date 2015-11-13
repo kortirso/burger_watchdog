@@ -1,0 +1,80 @@
+= form_for @config, id: 'form_config' do |f|
+	h2 Конфигурационные параметры
+	h3 Расчеты монстров
+	= f.label t('attributes.config.monster_timeout')
+	= f.text_field :monster_timeout
+	br
+	= f.label t('attributes.config.monster_percent')
+	= f.text_field :monster_percent
+	br
+	= f.label t('attributes.config.monster_heal')
+	= f.text_field :monster_heal
+	h3 Очки за метки
+	br
+	= f.label t('attributes.config.green_mark_points')
+	= f.text_field :green_mark_points
+    br
+	= f.label t('attributes.config.yellow_mark_points')
+	= f.text_field :yellow_mark_points
+    br
+	= f.label t('attributes.config.red_mark_points')
+	= f.text_field :red_mark_points
+    br
+	= f.label t('attributes.config.default_mark_points')
+	= f.text_field :default_mark_points
+	h3 Бонус за страйки
+	= f.label t('attributes.config.streak_bonus')
+	= f.text_field :streak_bonus
+	h3 Корпоративные стандарты
+	= f.label t('attributes.config.corporate')
+	= f.text_field :corporate
+	br
+	= f.label t('attributes.config.corporate_periods')
+	= f.text_field :corporate_periods
+	br
+	= f.label t('attributes.config.corporate_koef')
+	= f.text_field :corporate_koef
+	br
+	= f.label t('attributes.config.corporate_minimum')
+	= f.text_field :corporate_minimum
+	br
+	= f.label t('attributes.config.corporate_maximum')
+	= f.text_field :corporate_maximum
+	h3 Коффициент за турборежим
+	= f.label t('attributes.config.speed_koef')
+	= f.text_field :speed_koef
+	br
+	= f.label t('attributes.config.speed_count')
+	= f.text_field :speed_count
+	br
+	= f.label t('attributes.config.speed_times')
+	= f.text_field :speed_times
+	h3 Режим "приоритет треугольники"
+	= f.label t('attributes.config.triangle_koef')
+	= f.text_field :triangle_koef
+	br
+	= f.label t('attributes.config.triangle_periods')
+	= f.text_field :triangle_periods
+	p Формат записи - 11-13;14:30-16;17-18:15
+	h3 Коэффициент менеджера для набора очков в зависимости от шкалы
+	= f.label t('attributes.config.manager_koef')
+	= f.text_field :manager_koef
+	br
+	= f.label t('attributes.config.disposals')
+	= f.text_field :disposals
+	h3 Статусы звездочки
+	= f.label t('attributes.config.level_percent')
+	= f.text_field :level_percent
+	br
+	= f.label t('attributes.config.level_point')
+	= f.text_field :level_point
+	h3 Коэффициент за суперполный треугольник
+	= f.label t('attributes.config.dessert_bonus')
+	= f.text_field :dessert_bonus
+	h3 Максимальное время действия зеленых/красных статусов
+	= f.label t('attributes.config.max_green_time')
+	= f.text_field :max_green_time
+
+	br
+	br
+	= submit_tag 'Применить'

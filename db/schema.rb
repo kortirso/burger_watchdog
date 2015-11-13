@@ -11,7 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151111131414) do
+ActiveRecord::Schema.define(version: 20151113064132) do
+
+  create_table "configs", force: :cascade do |t|
+    t.integer  "monster_timeout",     default: 30
+    t.integer  "monster_percent",     default: 5
+    t.integer  "monster_heal",        default: 200
+    t.integer  "streak_bonus",        default: 3
+    t.integer  "corporate",           default: 150
+    t.integer  "corporate_periods",   default: 10
+    t.integer  "corporate_koef",      default: 2
+    t.integer  "corporate_minimum",   default: 90
+    t.integer  "corporate_maximum",   default: 210
+    t.integer  "speed_koef",          default: 2
+    t.integer  "speed_count",         default: 10
+    t.integer  "speed_times",         default: 30
+    t.integer  "triangle_koef",       default: 2
+    t.integer  "manager_koef",        default: 2
+    t.integer  "level_percent",       default: 1
+    t.integer  "level_point",         default: 100
+    t.string   "triangle_periods",    default: ""
+    t.integer  "green_mark_points",   default: 3
+    t.integer  "yellow_mark_points",  default: 2
+    t.integer  "red_mark_points",     default: -5
+    t.integer  "default_mark_points", default: 1
+    t.float    "disposals",           default: 10000.0
+    t.integer  "dessert_bonus",       default: 5
+    t.integer  "max_green_time",      default: 90
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
 
   create_table "gameservers", force: :cascade do |t|
     t.string   "ip"
