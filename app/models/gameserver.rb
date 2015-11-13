@@ -5,6 +5,7 @@ class Gameserver < ActiveRecord::Base
 
 	scope :opened,		-> { where open: 'true' }
 	scope :working,	-> { where status: true, desk_check: true }
+	scope :errored,		-> { where('status == ? OR desk_check == ?', false, false) }
 
 	def self.check_statuses
 		servers = Gameserver.opened
@@ -29,43 +30,34 @@ class Gameserver < ActiveRecord::Base
 
 				server.save!
 			rescue Exception
-				server.status = false
-				server.desk_check = false
-				server.uptime_periods += 1
-				server.save!
+				server.error
 			rescue Errno::ECONNREFUSED
-				server.status = false
-				server.desk_check = false
-				server.uptime_periods += 1
-				server.save!
+				server.error
 			rescue EOFError
 				false
 			rescue OpenURI::HTTPError
-				server.status = false
-				server.desk_check = false
-				server.uptime_periods += 1
-				server.save!
+				server.error
 			rescue Errno::EHOSTUNREACH
-				server.status = false
-				server.desk_check = false
-				server.uptime_periods += 1
-				server.save!
+				server.error
 			rescue Errno::ENETUNREACH
-				server.status = false
-				server.desk_check = false
-				server.uptime_periods += 1
-				server.save!
+				server.error
 			rescue JSON::ParserError
-				server.status = false
-				server.desk_check = false
-				server.uptime_periods += 1
-				server.save!
+				server.error
 			rescue NET::ERR_CONNECTION_TIMED_OUT
-				server.status = false
-				server.desk_check = false
-				server.uptime_periods += 1
-				server.save!
+				server.error
 			end
 		end
+		t = Time.current.hour
+		servers.errored.each do |server|
+			Rollbar.warning("Server #{server.ip} CRITICAL Error") unless server.status
+			Rollbar.warning("There is desk error at #{server.ip}") if server.desk_check == false && t > 9 && t < 22
+		end
+	end
+
+	def error
+		self.status = false
+		self.desk_check = false
+		self.uptime_periods += 1
+		self.save!
 	end
 end

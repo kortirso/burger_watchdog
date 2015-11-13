@@ -10,6 +10,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim'
 gem 'httparty'
 gem 'whenever'
+gem 'rollbar', '~> 2.6.0'
 
 group :development, :test do
 	gem 'byebug'
