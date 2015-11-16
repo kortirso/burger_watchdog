@@ -49,8 +49,8 @@ class Gameserver < ActiveRecord::Base
 		end
 		t = Time.current.hour
 		servers.errored.each do |server|
-			Rollbar.warning("Server #{server.ip} CRITICAL Error") unless server.status
-			Rollbar.warning("There is desk error at #{server.ip}") if server.desk_check == false && t > 9 && t < 22
+			Rollbar.warning("Server #{server.ip} CRITICAL Error", server: server.ip) unless server.status
+			Rollbar.warning("There is desk error at #{server.ip}", server: server.ip) if server.desk_check == false && t > 9 && t < 22
 		end
 	end
 
