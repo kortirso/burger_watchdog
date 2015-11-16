@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151113064132) do
+ActiveRecord::Schema.define(version: 20151116112359) do
 
-  create_table "configs", force: :cascade do |t|
+  create_table "centrals", force: :cascade do |t|
     t.integer  "monster_timeout",     default: 30
     t.integer  "monster_percent",     default: 5
     t.integer  "monster_heal",        default: 200
