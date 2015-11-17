@@ -1,6 +1,6 @@
 class ContainersController < ApplicationController
 	def index
-		if params[:id] == 'container.version'
+		if params[:id] == 'container'
 			send_file("/var/www/html/burger_watchdog/container.version")
 		else
 			File.open("/var/www/html/burger_watchdog/container.version", "r") do |f|
