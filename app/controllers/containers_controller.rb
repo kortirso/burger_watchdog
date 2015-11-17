@@ -6,7 +6,7 @@ class ContainersController < ApplicationController
 			version = nil
 			File.open("/var/www/html/burger_watchdog/container.version", "r") do |f|
 				f.each_line do |line|
-					version = line
+					version = line.strip
 				end
 			end
 			if version.nil?
