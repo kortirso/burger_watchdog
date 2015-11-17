@@ -9,16 +9,21 @@ class Gameserver < ActiveRecord::Base
 	scope :nolink,		-> { where status: false }
 
 	def self.check_statuses
+		t = Time.current.hour
 		servers = Gameserver.opened
 		servers.each do |server|
 			begin
 				source = "http://#{server.ip}/?format=json"
 				response = open(source)
 				data = JSON.parse(response.read)
-				server.desk_check = false
-				data["desks"].each do |desk|
-					server.desk_check = true if desk["statistic"]["desk_points"] > 0
+
+				if t > 9 && t < 22
+					server.desk_check = false
+					data["desks"].each do |desk|
+						server.desk_check = true if desk["statistic"]["desk_points"] > 0
+					end
 				end
+
 				server.status = true
 
 				if server.uptime_periods == 288 # Если данные собираются 3 дня
@@ -48,7 +53,6 @@ class Gameserver < ActiveRecord::Base
 				server.error
 			end
 		end
-		t = Time.current.hour
 		servers.errored.each do |server|
 			Rollbar.warning("Server #{server.ip} CRITICAL Error", server: server.ip) unless server.status
 			Rollbar.warning("There is desk error at #{server.ip}", server: server.ip) if server.desk_check == false && t > 9 && t < 22
