@@ -2,6 +2,7 @@ class ContainersController < ApplicationController
 	def index
 		if params[:id] == 'container'
 			send_file("/var/www/html/burger_watchdog/container.version")
+			render nothing: true
 		else
 			File.open("/var/www/html/burger_watchdog/container.version", "r") do |f|
 				f.each_line do |line|
@@ -9,7 +10,7 @@ class ContainersController < ApplicationController
 				end
 			end
 			send_file("/var/www/html/burger_watchdog/burger_king_#{version}.tar")
+			render nothing: true
 		end
-		render nothing: true
 	end
 end
