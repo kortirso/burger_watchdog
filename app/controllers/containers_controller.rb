@@ -1,6 +1,7 @@
 class ContainersController < ApplicationController
 	def index
-		send_file ("/var/www/html/burger_watchdog/#{params[:id]}")
+		str = params[:id]
+		send_file ("/var/www/html/burger_watchdog/#{str}")
 		render nothing: true
 	end
 end
