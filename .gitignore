@@ -15,4 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
+
 container.version
+burger_king_*
