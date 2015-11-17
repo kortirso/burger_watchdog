@@ -6,6 +6,7 @@ class Gameserver < ActiveRecord::Base
 	scope :opened,		-> { where open: 'true' }
 	scope :working,	-> { where status: true, desk_check: true }
 	scope :errored,		-> { where('status == ? OR desk_check == ?', false, false) }
+	scope :nolink,		-> { where status: false }
 
 	def self.check_statuses
 		servers = Gameserver.opened
