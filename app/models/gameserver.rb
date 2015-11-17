@@ -20,7 +20,7 @@ class Gameserver < ActiveRecord::Base
 				if t > 9 && t < 22
 					server.desk_check = false
 					data["desks"].each do |desk|
-						server.desk_check = true if desk["statistic"]["desk_points"] > 0
+						server.desk_check = true if desk["bufer"] > 0 || desk["saved_points"] > 0
 					end
 				end
 
