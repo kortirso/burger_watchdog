@@ -8,7 +8,11 @@ class ContainersController < ApplicationController
 					version = line
 				end
 			end
-			send_file("/var/www/html/burger_watchdog/burger_king_#{version}.tar")
+			if version
+				send_file("/var/www/html/burger_watchdog/burger_king_#{version}.tar")
+			else
+				render nothing: true
+			end
 		end
 	end
 end
