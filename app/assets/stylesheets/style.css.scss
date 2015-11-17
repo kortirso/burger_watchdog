@@ -5,6 +5,14 @@
 
 	tr {
 		border-bottom: 2px solid #FFF;
+
+		td {
+			min-width: 120px;
+
+			&.centered {
+				text-align: center;
+			}
+		}
 	}
 }
 

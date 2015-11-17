@@ -1,7 +1,7 @@
 td= server.address
-td= server.ip
-td= server.status
-td= server.desk_check
+td.centered= server.ip
+td.centered= server.status
+td.centered= server.desk_check
 - if server.uptime_periods > 0
 	td= "#{server.uptime * 100 / server.uptime_periods}%"
 - else
