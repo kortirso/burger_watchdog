@@ -11,6 +11,7 @@ table#watchdog
 		th Статус сервера
 		th Статус касс
 		th Uptime
+		th Версия контейнера
 	tbody
 		- @opened.each do |server|
 			- if server.status == false

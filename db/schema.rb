@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151116112359) do
+ActiveRecord::Schema.define(version: 20151118170905) do
 
   create_table "centrals", force: :cascade do |t|
     t.integer  "monster_timeout",     default: 30
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20151116112359) do
     t.boolean  "desk_check",     default: true
     t.integer  "uptime",         default: 0
     t.integer  "uptime_periods", default: 0
+    t.integer  "version",        default: 1
   end
 
 end

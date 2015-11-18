@@ -19,8 +19,8 @@ class Gameserver < ActiveRecord::Base
 
 				if t > 6 && t < 19
 					server.desk_check = false
-					data["desks"].each do |desk|
-						server.desk_check = true if desk["bufer"] > 0 || desk["saved_points"] > 0
+					data["points"].each do |point|
+						server.desk_check = true if point > 0
 					end
 				end
 
@@ -30,6 +30,8 @@ class Gameserver < ActiveRecord::Base
 					server.uptime_periods = 0
 					server.uptime = 0
 				end
+
+				server.version = data["desks"][0]["bufer"].nil? ? 2 : 1
 
 				server.uptime += 1 if server.desk_check
 				server.uptime_periods += 1
