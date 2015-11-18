@@ -16,7 +16,7 @@ class CentralsController < ApplicationController
 	def restore
 		Central.first.destroy
 		Central.create
-		render template: 'index'
+		render template: 'centrals/index'
 	end
 
 	private
