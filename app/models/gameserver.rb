@@ -17,7 +17,7 @@ class Gameserver < ActiveRecord::Base
 				response = open(source)
 				data = JSON.parse(response.read)
 
-				if t > 9 && t < 22
+				if t > 6 && t < 19
 					server.desk_check = false
 					data["desks"].each do |desk|
 						server.desk_check = true if desk["bufer"] > 0 || desk["saved_points"] > 0
@@ -55,7 +55,7 @@ class Gameserver < ActiveRecord::Base
 		end
 		servers.errored.each do |server|
 			Rollbar.warning("Server #{server.ip} CRITICAL Error", server: server.ip) unless server.status
-			Rollbar.warning("There is desk error at #{server.ip}", server: server.ip) if server.desk_check == false && t > 9 && t < 22
+			Rollbar.warning("There is desk error at #{server.ip}", server: server.ip) if server.desk_check == false && t > 6 && t < 19
 		end
 	end
 
