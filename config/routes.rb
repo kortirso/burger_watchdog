@@ -3,6 +3,6 @@ Rails.application.routes.draw do
 	get 'restore' => 'centrals#restore', as: 'restore'
 	get 'containers/:id' => 'containers#index'
 	get 'statistic' => 'statistic#index', as: 'statistic'
-	post 'statistic/load' => 'statistic#load', as: 'load'
+	post 'statistic' => 'statistic#load', as: 'load'
 	root to: 'status#index'
 end
