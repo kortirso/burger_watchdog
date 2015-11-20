@@ -3,7 +3,7 @@ require 'csv'
 
 class Workday < ActiveRecord::Base
 
-	def set_data(x)
+	def self.set_data(x)
 		restaurants = []
 		strings = x.split(",")
 		periods = []
