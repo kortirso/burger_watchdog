@@ -1,7 +1,7 @@
 = form_for('params', url: load_path('params', format: :csv)) do |f|
 	p= f.text_field :first
 	p= f.text_field :second
-	p= f.submit, value: 'Скачать CSV'
+	p= f.submit
 
 table#workdays border="1"
 	thead
