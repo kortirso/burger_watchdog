@@ -9,7 +9,7 @@ class StatisticController < ApplicationController
 
 	def load
 		@workdays = Workday.all
-		@workdays = @workdays.set_data(params["params"]["third"]) if params["params"]["third"]
+		@workdays = @workdays.set_data(params["params"]["third"]) unless params["params"]["third"].empty?
 		respond_to do |format|
 			format.csv { send_data @workdays.build_csv }
 		end
