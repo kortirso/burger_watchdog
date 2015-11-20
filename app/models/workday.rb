@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'csv'
 
 class Workday < ActiveRecord::Base
 
