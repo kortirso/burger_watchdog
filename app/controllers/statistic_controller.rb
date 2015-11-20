@@ -9,7 +9,7 @@ class StatisticController < ApplicationController
 
 	def load
 		@workdays = Workday.all
-		if params["third"]
+		if params["params"]["third"]
 			@workdays = @workdays.where(restaurant: params["params"]["third"].to_i)
 		end
 		respond_to do |format|
