@@ -49,9 +49,10 @@ class Workday < ActiveRecord::Base
 				day.name = workday["workable"]["name"]
 
 				day.save!
-			rescue EOFError
-				false
 			end
+
+		rescue EOFError
+			false
 		end
 	end
 end
