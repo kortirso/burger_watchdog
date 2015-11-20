@@ -23,3 +23,11 @@
 		margin-bottom: 20px;
 	}
 }
+
+#wordays {
+	tbody {
+		tr:nth-child(2n) {
+			background: #999;
+		}
+	}
+}

@@ -1,4 +1,50 @@
 = form_for('params', url: load_path('params', format: :csv)) do |f|
 	p= f.text_field :first
 	p= f.text_field :second
-	p= f.submit
+	p= f.submit, value: 'Скачать CSV'
+
+table#workdays border="1"
+	thead
+		th № ресторана
+		th ФИО кассира
+		th дата
+		th смена
+		th средний чек
+		th среднее время
+		th наполненность
+		th кол-во заказов
+		th мини треугольники
+		th треугольники
+		th кол-во блюд
+		th основные
+		th гарниры
+		th соусы
+		th напитки
+		th десерты
+		th всего очков
+		th звездочки
+		th крестики
+		th галочки
+	tbody
+		- @workdays.each do |workday|
+			tr
+				td= workday.restaurant
+				td= workday.workable.name
+				td= workday.day
+				td= workday.smena
+				td= workday.check
+				td= workday.time
+				td= workday.dish_count
+				td= workday.number
+				td= workday.triangles
+				td= workday.full_triangles
+				td= workday.dishes
+				td= workday.mains
+				td= workday.garnirs
+				td= workday.sauces
+				td= workday.drinks
+				td= workday.desserts
+				td= workday.points
+				td= workday.yellow
+				td= workday.red
+				td= workday.green
