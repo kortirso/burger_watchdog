@@ -9,9 +9,7 @@ class StatisticController < ApplicationController
 
 	def load
 		@workdays = Workday.all
-		if params["params"]["third"]
-			@workdays = @workdays.where(restaurant: params["params"]["third"].to_i)
-		end
+		@workdays = @workdays.set_data(params["params"]["third"]) if params["params"]["third"]
 		respond_to do |format|
 			format.csv { send_data @workdays.build_csv }
 		end

@@ -3,6 +3,15 @@ require 'csv'
 
 class Workday < ActiveRecord::Base
 
+	def set_data(x)
+		restaurants = []
+		strings = x.split(",")
+		periods = []
+		strings.each { |string| periods.push(string.split("-")) }
+		periods.each { |period| period.size == 1 ? restaurants.push(period[0].to_i) : (period[0]..period[1]).each { |x| restaurants.push(x.to_i) } }
+		where("restaurant IN (?)", restaurants)
+	end
+
 	def self.build_csv
 		CSV.generate do |csv|
 			csv << column_names
