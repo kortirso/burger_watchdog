@@ -11,7 +11,7 @@ class StatisticController < ApplicationController
 		@workdays = Workday.all
 		@workdays = @workdays.set_data(params["params"]["third"]) unless params["params"]["third"].empty?
 		respond_to do |format|
-			format.csv { send_data @workdays.build_csv }
+			format.csv { send_data @workdays.build_csv({col_sep: ";", encoding: 'utf-8'})}
 		end
 	end
 end

@@ -12,8 +12,8 @@ class Workday < ActiveRecord::Base
 		where("restaurant IN (?)", restaurants)
 	end
 
-	def self.build_csv
-		CSV.generate do |csv|
+	def self.build_csv(options)
+		CSV.generate(options) do |csv|
 			csv << column_names
 			all.each do |days|
 				csv << days.attributes.values_at(*column_names)
