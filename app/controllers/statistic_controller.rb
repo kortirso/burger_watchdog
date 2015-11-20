@@ -3,7 +3,13 @@ class StatisticController < ApplicationController
 		@workdays = Workday.all
 		respond_to do |format|
 			format.html { }
-			format.csv { send_data @workdays.build_csv }
+		end
+	end
+
+	def load
+		@data = Workday.all
+		respond_to do |format|
+			format.csv { send_data @data.build_csv }
 		end
 	end
 end

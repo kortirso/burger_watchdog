@@ -1,1 +1,4 @@
-= link_to "CSV за сегодня с тестового сервера", statistic_path(format: "csv")
+= form_for '/statistic/load', format: 'csv' do |f|
+	= f.text_field :first
+	= f.text_field :second
+	= f.submit
