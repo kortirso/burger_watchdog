@@ -5,21 +5,21 @@ p= "Ошибок связи - #{@nolink.count}"
 p= "Ошибок касс - #{@nodesk}"
 
 table#watchdog
-	thead
-		th Адрес
-		th IP-адрес
-		th Статус сервера
-		th Статус касс
-		th Uptime
-		th Версия контейнера
-	tbody
-		- @opened.each do |server|
-			- if server.status == false
-				tr style="background: red;"
-					= render 'status/tr', server: server
-			- elsif server.desk_check == false
-				tr style="background: yellow;"
-					= render 'status/tr', server: server
-			- else
-				tr
-					= render 'status/tr', server: server
+    thead
+        th Адрес
+        th IP-адрес
+        th Статус сервера
+        th Статус касс
+        th Uptime
+        th Версия контейнера
+    tbody
+        - @opened.each do |server|
+            - if server.status == false
+                tr style="background: red;"
+                    = render 'status/tr', server: server
+            - elsif server.desk_check == false
+                tr style="background: yellow;"
+                    = render 'status/tr', server: server
+            - else
+                tr
+                    = render 'status/tr', server: server

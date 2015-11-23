@@ -1,55 +1,55 @@
 = form_for('params', url: load_path('params', format: :csv)) do |f|
-	h4 дата начала выборки (пока не учитывается)
-	p= f.text_field :first
-	h4 дата завершения выборки (пока не учитывается)
-	p= f.text_field :second
-	h4 Номера нужных ресторанов
-	p формат записи - 1,14-28,100-300 (если пусто, то собирается вся статистика)
-	p= f.text_field :third
-	p= f.submit
+    h4 дата начала выборки (пока не учитывается)
+    p= f.text_field :first
+    h4 дата завершения выборки (пока не учитывается)
+    p= f.text_field :second
+    h4 Номера нужных ресторанов
+    p формат записи - 1,14-28,100-300 (если пусто, то собирается вся статистика)
+    p= f.text_field :third
+    p= f.submit
 
 table#workdays border="1"
-	thead
-		th № ресторана
-		th ФИО кассира
-		th дата
-		th смена
-		th средний чек
-		th среднее время
-		th наполненность
-		th кол-во заказов
-		th мини треугольники
-		th треугольники
-		th кол-во блюд
-		th основные
-		th гарниры
-		th соусы
-		th напитки
-		th десерты
-		th всего очков
-		th звездочки
-		th крестики
-		th галочки
-	tbody
-		- @workdays.each do |workday|
-			tr
-				td= workday.restaurant
-				td= workday.name
-				td= workday.day
-				td= workday.smena
-				td= workday.check
-				td= workday.time
-				td= workday.dish_count
-				td= workday.number
-				td= workday.triangles
-				td= workday.full_triangles
-				td= workday.dishes
-				td= workday.mains
-				td= workday.garnirs
-				td= workday.sauces
-				td= workday.drinks
-				td= workday.desserts
-				td= workday.points
-				td= workday.yellow
-				td= workday.red
-				td= workday.green
+    thead
+        th № ресторана
+        th ФИО кассира
+        th дата
+        th смена
+        th средний чек
+        th среднее время
+        th наполненность
+        th кол-во заказов
+        th мини треугольники
+        th треугольники
+        th кол-во блюд
+        th основные
+        th гарниры
+        th соусы
+        th напитки
+        th десерты
+        th всего очков
+        th звездочки
+        th крестики
+        th галочки
+    tbody
+        - @workdays.each do |workday|
+            tr
+                td= workday.restaurant
+                td= workday.name
+                td= workday.day
+                td= workday.smena
+                td= workday.check
+                td= workday.time
+                td= workday.dish_count
+                td= workday.number
+                td= workday.triangles
+                td= workday.full_triangles
+                td= workday.dishes
+                td= workday.mains
+                td= workday.garnirs
+                td= workday.sauces
+                td= workday.drinks
+                td= workday.desserts
+                td= workday.points
+                td= workday.yellow
+                td= workday.red
+                td= workday.green

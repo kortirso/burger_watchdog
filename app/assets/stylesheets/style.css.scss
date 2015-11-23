@@ -1,33 +1,33 @@
 #watchdog {
-	border: 0;
-	border-collapse: collapse;
-	padding: 0;
+    border: 0;
+    border-collapse: collapse;
+    padding: 0;
 
-	tr {
-		border-bottom: 2px solid #FFF;
+    tr {
+        border-bottom: 2px solid #FFF;
 
-		td {
-			min-width: 120px;
+        td {
+            min-width: 120px;
 
-			&.centered {
-				text-align: center;
-			}
-		}
-	}
+            &.centered {
+                text-align: center;
+            }
+        }
+    }
 }
 
 .edit_config {
-	label {
-		display: inline-block;
-		width: 400px;
-		margin-bottom: 20px;
-	}
+    label {
+        display: inline-block;
+        width: 400px;
+        margin-bottom: 20px;
+    }
 }
 
 #wordays {
-	tbody {
-		tr:nth-child(2n) {
-			background: #999;
-		}
-	}
+    tbody {
+        tr:nth-child(2n) {
+            background: #999;
+        }
+    }
 }
