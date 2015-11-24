@@ -82,7 +82,7 @@ class Workday < ActiveRecord::Base
                 day = Workday.new if day.nil?
 
                 day.restaurant = workday["restaurant"]
-                dea.day = workday["restaurant"]
+                day.day = workday["restaurant"]
                 day.mains = workday["mains"]
                 day.sauces = workday["sauces"]
                 day.desserts = workday["desserts"]
