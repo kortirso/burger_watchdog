@@ -63,31 +63,33 @@ class Workday < ActiveRecord::Base
                 data = JSON.parse(response.read)
 
                 data["workdays"].each do |workday|
-                    day = Workday.where(restaurant: workday["restaurant"], day: workday["day"], name: workday["workable"]["name"]).first
-                    day = Workday.new if day.nil?
+                    unless workday["workable"].nil?
+                        day = Workday.where(restaurant: workday["restaurant"], day: workday["day"], name: workday["workable"]["name"]).first
+                        day = Workday.new if day.nil?
 
-                    day.restaurant = workday["restaurant"]
-                    day.day = workday["day"]
-                    day.mains = workday["mains"]
-                    day.sauces = workday["sauces"]
-                    day.desserts = workday["desserts"]
-                    day.drinks = workday["drinks"]
-                    day.garnirs = workday["garnirs"]
-                    day.check = workday["check"]
-                    day.time = workday["time"]
-                    day.dish_count = workday["dish_count"]
-                    day.triangles = workday["triangles"]
-                    day.full_triangles = workday["full_triangles"]
-                    day.points = workday["points"]
-                    day.smena = workday["smena"]
-                    day.number = workday["number"]
-                    day.dishes = workday["dishes"]
-                    day.yellow = workday["yellow"]
-                    day.red = workday["red"]
-                    day.green = workday["green"]
-                    day.name = workday["workable"]["name"]
+                        day.restaurant = workday["restaurant"]
+                        day.day = workday["day"]
+                        day.mains = workday["mains"]
+                        day.sauces = workday["sauces"]
+                        day.desserts = workday["desserts"]
+                        day.drinks = workday["drinks"]
+                        day.garnirs = workday["garnirs"]
+                        day.check = workday["check"]
+                        day.time = workday["time"]
+                        day.dish_count = workday["dish_count"]
+                        day.triangles = workday["triangles"]
+                        day.full_triangles = workday["full_triangles"]
+                        day.points = workday["points"]
+                        day.smena = workday["smena"]
+                        day.number = workday["number"]
+                        day.dishes = workday["dishes"]
+                        day.yellow = workday["yellow"]
+                        day.red = workday["red"]
+                        day.green = workday["green"]
+                        day.name = workday["workable"]["name"]
 
-                    day.save!
+                        day.save!
+                    end
                 end
 
             rescue EOFError
