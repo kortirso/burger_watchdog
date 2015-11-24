@@ -98,5 +98,5 @@ class Workday < ActiveRecord::Base
             false
         end
         #end
-    #end
+    end
 end
