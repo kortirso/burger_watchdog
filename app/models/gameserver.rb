@@ -31,7 +31,11 @@ class Gameserver < ActiveRecord::Base
                     server.uptime = 0
                 end
 
-                server.version = data["desks"][0]["bufer"].nil? ? 2 : 1
+                if data["deploy"].any?
+                    server.version = data["deploy"]
+                else
+                    server.version = data["desks"][0]["bufer"].nil? ? 2 : 1
+                end
 
                 server.uptime += 1 if server.desk_check
                 server.uptime_periods += 1
