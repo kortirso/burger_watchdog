@@ -1,6 +1,5 @@
 class StatisticController < ApplicationController
     def index
-        Workday.check_statistic
         @workdays = Workday.all
         respond_to do |format|
             format.html { }

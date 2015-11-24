@@ -3,10 +3,11 @@ require 'open-uri'
 class Gameserver < ActiveRecord::Base
     #validates :ip, :address, :open, :status, :desk_check, :uptime, :uptime_periods, presence: true
 
-    scope :opened,      -> { where open: 'true' }
+    scope :opened, -> { where open: 'true' }
     scope :working, -> { where status: true, desk_check: true }
-    scope :errored,     -> { where('status == ? OR desk_check == ?', false, false) }
-    scope :nolink,      -> { where status: false }
+    scope :errored, -> { where('status == ? OR desk_check == ?', false, false) }
+    scope :nolink, -> { where status: false }
+    scope :newest, -> { where('version != ? AND version != ?', '1', '2') }
 
     def self.check_statuses
         t = Time.current.hour
