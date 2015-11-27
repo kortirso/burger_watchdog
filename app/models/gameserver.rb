@@ -33,7 +33,7 @@ class Gameserver < ActiveRecord::Base
                 end
 
                 if data["deploy"].nil?
-                    server.version = data["desks"][0]["bufer"].nil? ? "2" : "1"
+                    server.version = data["desks"][0]["buffer"].nil? ? "2" : "1"
                 else
                     server.version = data["deploy"]
                 end
