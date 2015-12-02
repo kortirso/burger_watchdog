@@ -64,9 +64,7 @@ class Workday < ActiveRecord::Base
 
                 data["workdays"].each do |workday|
                     unless workday["workable"].nil?
-                        day = Workday.where(restaurant: workday["restaurant"], day: workday["day"], name: workday["workable"]["name"]).first
-                        day = Workday.new if day.nil?
-
+                        day = Workday.find_or_create_by(restaurant: workday["restaurant"], day: workday["day"], name: workday["workable"]["name"])
                         day.restaurant = workday["restaurant"]
                         day.day = workday["day"]
                         day.mains = workday["mains"]
@@ -87,10 +85,10 @@ class Workday < ActiveRecord::Base
                         day.red = workday["red"]
                         day.green = workday["green"]
                         day.name = workday["workable"]["name"]
-
                         day.save!
                     end
                 end
+                Workday.find_or_create_by(restaurant: data["restaurant"], day: data["day"], name: 'Менеджер')
 
             rescue EOFError
                 false
