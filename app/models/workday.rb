@@ -88,7 +88,9 @@ class Workday < ActiveRecord::Base
                         day.save!
                     end
                 end
-                Workday.find_or_create_by(restaurant: data["restaurant"], day: data["day"], name: 'Менеджер')
+                day = Workday.find_or_create_by(restaurant: data["restaurant"], day: data["day"], name: 'Менеджер')
+                day.smena = data["manager"]
+                day.save!
 
             rescue EOFError
                 false
