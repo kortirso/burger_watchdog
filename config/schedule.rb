@@ -7,3 +7,7 @@ end
 every 20.minutes do
     runner "Workday.check_statistic"
 end
+
+every 30.minutes do
+    runner "Manager.check_statistic"
+end

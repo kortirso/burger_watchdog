@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124093518) do
+ActiveRecord::Schema.define(version: 20151203091258) do
 
   create_table "centrals", force: :cascade do |t|
     t.integer  "monster_timeout",     default: 30
@@ -53,6 +53,16 @@ ActiveRecord::Schema.define(version: 20151124093518) do
     t.integer  "uptime",         default: 0
     t.integer  "uptime_periods", default: 0
     t.string   "version",        default: "1"
+  end
+
+  create_table "managers", force: :cascade do |t|
+    t.integer  "restaurant"
+    t.string   "day"
+    t.integer  "turbo",      default: 0
+    t.integer  "greens",     default: 0
+    t.integer  "reds",       default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "workdays", force: :cascade do |t|

@@ -1,8 +1,7 @@
 require 'open-uri'
 require 'csv'
 
-class Workday < ActiveRecord::Base
-
+class Manager < ActiveRecord::Base
     def self.set_data(x)
         restaurants = []
         strings = x.split(",")
@@ -58,36 +57,15 @@ class Workday < ActiveRecord::Base
         servers = Gameserver.newest
         servers.each do |server|
             begin
-                source = "http://#{server.ip}/workdays.json"
+                source = "http://10.0.44.2/workdays.json"
                 response = open(source)
                 data = JSON.parse(response.read)
 
-                data["workdays"].each do |workday|
-                    unless workday["workable"].nil?
-                        day = Workday.find_or_create_by(restaurant: workday["restaurant"], day: workday["day"], name: workday["workable"]["name"])
-                        day.restaurant = workday["restaurant"]
-                        day.day = workday["day"]
-                        day.mains = workday["mains"]
-                        day.sauces = workday["sauces"]
-                        day.desserts = workday["desserts"]
-                        day.drinks = workday["drinks"]
-                        day.garnirs = workday["garnirs"]
-                        day.check = workday["check"]
-                        day.time = workday["time"]
-                        day.dish_count = workday["dish_count"]
-                        day.triangles = workday["triangles"]
-                        day.full_triangles = workday["full_triangles"]
-                        day.points = workday["points"]
-                        day.smena = workday["smena"]
-                        day.number = workday["number"]
-                        day.dishes = workday["dishes"]
-                        day.yellow = workday["yellow"]
-                        day.red = workday["red"]
-                        day.green = workday["green"]
-                        day.name = workday["workable"]["name"]
-                        day.save!
-                    end
-                end
+                day = Manager.find_or_create_by(restaurant: data["restaurant"], day: data["day"])
+                day.turbo = data["manager"][0]
+                day.greens = data["manager"][1]
+                day.reds = data["manager"][2]
+                day.save!
 
             rescue EOFError
                 false
