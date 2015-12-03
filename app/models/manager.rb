@@ -57,7 +57,7 @@ class Manager < ActiveRecord::Base
         servers = Gameserver.newest
         servers.each do |server|
             begin
-                source = "http://10.0.44.2/workdays.json"
+                source = "http://#{server.ip}/workdays.json"
                 response = open(source)
                 data = JSON.parse(response.read)
 

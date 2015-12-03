@@ -1,4 +1,4 @@
-p= 'Данные по кассирам'
+h2= 'Данные по кассирам'
 = form_for('params', url: load_path('params', format: :csv)) do |f|
     h4 даты выборки
     p формат записи
@@ -13,7 +13,7 @@ p= 'Данные по кассирам'
     p= f.text_field :second
     p= f.submit
 
-p= 'Данные по менеджерам'
+h2= 'Данные по менеджерам'
 = form_for('params', url: manager_load_path('params', format: :csv)) do |f|
     h4 даты выборки
     p формат записи
