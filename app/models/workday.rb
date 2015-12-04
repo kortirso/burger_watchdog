@@ -85,6 +85,7 @@ class Workday < ActiveRecord::Base
                         day.red = workday["red"]
                         day.green = workday["green"]
                         day.name = workday["workable"]["name"]
+                        day.kills = workday["kills"]
                         day.save!
                     end
                 end

@@ -65,6 +65,7 @@ class Manager < ActiveRecord::Base
                 day.turbo = data["manager"][0]
                 day.greens = data["manager"][1]
                 day.reds = data["manager"][2]
+                day.kills = data["manager"][3]
                 day.save!
 
             rescue EOFError
