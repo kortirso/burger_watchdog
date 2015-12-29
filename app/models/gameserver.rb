@@ -4,10 +4,27 @@ class Gameserver < ActiveRecord::Base
     #validates :ip, :address, :open, :status, :desk_check, :uptime, :uptime_periods, presence: true
 
     scope :opened, -> { where open: 'true' }
+    scope :closed, -> { where open: 'false' }
     scope :working, -> { where status: true, desk_check: true }
     scope :errored, -> { where('status == ? OR desk_check == ?', false, false) }
     scope :nolink, -> { where status: false }
     scope :newest, -> { where('version != ? AND version != ?', '1', '2') }
+
+    def self.check_new
+        servers = Gameserver.closed
+        servers.each do |server|
+            begin
+                source = "http://#{server.ip}/?format=json"
+                response = open(source)
+                data = JSON.parse(response.read)
+                server.update(open: 'true')
+            rescue Exception
+                false
+            rescue EOFError
+                false
+            end
+        end
+    end
 
     def self.check_statuses
         t = Time.current.hour

@@ -11,3 +11,7 @@ end
 every 30.minutes do
     runner "Manager.check_statistic"
 end
+
+every 12.hours do
+    runner "Gameserver.check_new"
+end
